@@ -9,13 +9,6 @@ Secure your site with SameSite cookies :cookie:
 [![Quality Score](https://img.shields.io/scrutinizer/quality/g/selective-php/samesite-cookie.svg?style=flat-square)](https://scrutinizer-ci.com/g/selective-php/samesite-cookie/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/selective/samesite-cookie.svg?style=flat-square)](https://packagist.org/packages/selective/samesite-cookie/stats)
 
-
-## Features
-
-* No dependencies
-* Tested
-* Very fast
-
 ## Requirements
 
 * PHP 7.1+
@@ -26,9 +19,50 @@ Secure your site with SameSite cookies :cookie:
 composer require selective/samesite-cookie
 ```
 
+## SameSite cookies
+
+Same-site cookies ("First-Party-Only" or "First-Party") allow servers to mitigate 
+the risk of CSRF and information leakage attacks by asserting that a particular 
+cookie should only be sent with requests initiated from the same registrable domain.
+
+**Warning:** SameSite cookies doesn't work at all for old Browsers and 
+also not for some Mobil Browsers e.g. IE 10, Blackberry, Opera Mini, 
+IE Mobile, UC Browser for Android.
+
+Further details can be found here:
+
+* [https://web.dev/samesite-cookies-explained](SameSite cookies explained)
+* [CSRF is (really) dead](https://scotthelme.co.uk/csrf-is-really-dead/)
+* [PHP setcookie “SameSite=Strict”?](https://stackoverflow.com/questions/39750906/php-setcookie-samesite-strict)
+* [How to Set a cookie attribute Samesite value in PHP ?](https://www.tutorialshore.com/how-to-set-a-cookie-attribute-samesite-value-in-php/)
+* [Can I use SameSite?](https://caniuse.com/#feat=same-site-cookie-attribute)
+
 ## Usage
 
-* TODO
+Slim 4 uses a LIFO (last in, first out) middleware stack,
+so we have to add the middleware in reverse order:
+
+```php
+<?php
+
+use Selective\SameSiteCookie\SameSiteCookieMiddlware;
+use Selective\SameSiteCookie\SameSiteSessionMiddleware;
+use Slim\Factory\AppFactory;
+
+$app = AppFactory::create();
+
+// ...
+
+// Register the samesite cookie middleware
+$app->add(new SameSiteCookieMiddlware(true));
+
+// Start the native PHP session handler and fetch the session attributes
+$app->add(new SameSiteSessionMiddleware('Lax', true, true));
+
+// ...
+
+$app->run();
+```
 
 ## License
 
