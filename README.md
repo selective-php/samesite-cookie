@@ -31,13 +31,13 @@ IE Mobile, UC Browser for Android.
 
 Further details can be found here:
 
-* [https://web.dev/samesite-cookies-explained](SameSite cookies explained)
+* [SameSite cookies explained](https://web.dev/samesite-cookies-explained)
 * [CSRF is (really) dead](https://scotthelme.co.uk/csrf-is-really-dead/)
 * [PHP setcookie “SameSite=Strict”?](https://stackoverflow.com/questions/39750906/php-setcookie-samesite-strict)
 * [How to Set a cookie attribute Samesite value in PHP ?](https://www.tutorialshore.com/how-to-set-a-cookie-attribute-samesite-value-in-php/)
 * [Can I use SameSite?](https://caniuse.com/#feat=same-site-cookie-attribute)
 
-## Usage
+## Slim 4 integration
 
 Slim 4 uses a LIFO (last in, first out) middleware stack,
 so we have to add the middleware in reverse order:
@@ -45,7 +45,8 @@ so we have to add the middleware in reverse order:
 ```php
 <?php
 
-use Selective\SameSiteCookie\SameSiteCookieMiddlware;
+use Selective\SameSiteCookie\SameSiteCookieConfiguration;
+use Selective\SameSiteCookie\SameSiteCookieMiddleware;
 use Selective\SameSiteCookie\SameSiteSessionMiddleware;
 use Slim\Factory\AppFactory;
 
@@ -53,11 +54,13 @@ $app = AppFactory::create();
 
 // ...
 
+$configuration = new SameSiteCookieConfiguration();
+
 // Register the samesite cookie middleware
-$app->add(new SameSiteCookieMiddlware(true));
+$app->add(new SameSiteCookieMiddleware($configuration));
 
 // Start the native PHP session handler and fetch the session attributes
-$app->add(new SameSiteSessionMiddleware('Lax', true, true));
+$app->add(new SameSiteSessionMiddleware($configuration));
 
 // ...
 

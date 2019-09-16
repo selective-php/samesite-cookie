@@ -10,7 +10,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * SameSite Cookie Middleware.
  */
-final class SameSiteCookieMiddlware implements MiddlewareInterface
+final class SameSiteCookieMiddleware implements MiddlewareInterface
 {
     /**
      * @var string
@@ -30,15 +30,13 @@ final class SameSiteCookieMiddlware implements MiddlewareInterface
     /**
      * The constructor.
      *
-     * @param string $sameSite Send cookie only via a href link. Values: 'Lax' or 'Strict'.
-     * @param bool $httpOnly Prevents cookies from being read by scripts. Should be enabled.
-     * @param bool $secure Provide cookies only via ssl. Should be enabled in production.
+     * @param SameSiteCookieConfiguration $configuration The configuration
      */
-    public function __construct(string $sameSite = 'Lax', bool $httpOnly = true, bool $secure = false)
+    public function __construct(SameSiteCookieConfiguration $configuration)
     {
-        $this->sameSite = $sameSite;
-        $this->httpOnly = $httpOnly;
-        $this->secure = $secure;
+        $this->sameSite = $configuration->sameSite;
+        $this->httpOnly = $configuration->httpOnly;
+        $this->secure = $configuration->secure;
     }
 
     /**
@@ -57,20 +55,6 @@ final class SameSiteCookieMiddlware implements MiddlewareInterface
         $sessionName = $request->getAttribute('session_name');
         $params = $request->getAttribute('session_cookie_params');
 
-        if (version_compare(PHP_VERSION, '7.3.0') >= 0) {
-            // Remove invalid key
-            unset($params['lifetime']);
-
-            $params['samesite'] = $this->sameSite;
-            $params['httponly'] = $this->httpOnly;
-            $params['secure'] = $this->secure;
-
-            setcookie($sessionName, $sessionId, $params);
-
-            return $response;
-        }
-
-        // For older PHP versions
         $cookieValues = [
             sprintf('%s=%s;', $sessionName, $sessionId),
             sprintf('path=%s;', $params['path']),
@@ -88,8 +72,7 @@ final class SameSiteCookieMiddlware implements MiddlewareInterface
             $cookieValues[] = sprintf('SameSite=%s;', $this->sameSite);
         }
 
-        //$response = $response->withHeader('Set-Cookie', implode(' ', $cookieValues));
-        header('Set-Cookie: ' . implode(' ', $cookieValues));
+        $response = $response->withHeader('Set-Cookie', implode(' ', $cookieValues));
 
         return $response;
     }

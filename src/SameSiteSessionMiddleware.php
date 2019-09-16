@@ -20,11 +20,11 @@ final class SameSiteSessionMiddleware implements MiddlewareInterface
     /**
      * The constructor.
      *
-     * @param bool $startSession The the session
+     * @param SameSiteCookieConfiguration $configuration The configuration
      */
-    public function __construct(bool $startSession = true)
+    public function __construct(SameSiteCookieConfiguration $configuration)
     {
-        $this->startSession = $startSession;
+        $this->startSession = $configuration->startSession;
     }
 
     /**
