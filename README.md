@@ -9,6 +9,7 @@ Secure your site with SameSite cookies :cookie:
 [![Quality Score](https://img.shields.io/scrutinizer/quality/g/selective-php/samesite-cookie.svg?style=flat-square)](https://scrutinizer-ci.com/g/selective-php/samesite-cookie/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/selective/samesite-cookie.svg?style=flat-square)](https://packagist.org/packages/selective/samesite-cookie/stats)
 
+
 ## Requirements
 
 * PHP 7.1+
@@ -20,6 +21,8 @@ composer require selective/samesite-cookie
 ```
 
 ## SameSite cookies
+
+![image](https://user-images.githubusercontent.com/781074/64995066-95404c80-d8da-11e9-975f-bdbbf55bd311.png)
 
 Same-site cookies ("First-Party-Only" or "First-Party") allow servers to mitigate 
 the risk of CSRF and information leakage attacks by asserting that a particular 
