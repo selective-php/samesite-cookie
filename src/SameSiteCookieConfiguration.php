@@ -18,7 +18,13 @@ final class SameSiteCookieConfiguration
     public $sameSite = 'Lax';
 
     /**
-     * @var bool Prevents cookies from being read by scripts. Should be enabled.
+     * Indicates that the cookie should only be transmitted over a secure HTTPS connection from the client.
+     * When set to true, the cookie will only be set if a secure connection exists.
+     *
+     * true = Set cookie only for HTTPS
+     * false = Set cookie for HTTP and HTTPS
+     *
+     * @var bool Prevents cookies from being read by scripts.
      */
     public $httpOnly = true;
 
