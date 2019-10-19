@@ -2,10 +2,10 @@
 
 namespace Selective\SameSiteCookie\Test;
 
-use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Relay\Relay;
+use Slim\Psr7\Factory\ServerRequestFactory;
 
 /**
  * Test.
@@ -36,6 +36,6 @@ trait MiddlewareTestTrait
      */
     protected function createRequest(): ServerRequestInterface
     {
-        return (new Psr17Factory())->createServerRequest('GET', '/');
+        return (new ServerRequestFactory())->createServerRequest('GET', '/');
     }
 }
