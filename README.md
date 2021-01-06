@@ -4,7 +4,7 @@ A PSR-15 middleware to secure your site with SameSite cookies :cookie:
 
 [![Latest Version on Packagist](https://img.shields.io/github/release/selective-php/samesite-cookie.svg)](https://packagist.org/packages/selective/samesite-cookie)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
-[![Build Status](https://img.shields.io/travis/selective-php/samesite-cookie/master.svg)](https://travis-ci.org/selective-php/samesite-cookie)
+[![Build Status](https://github.com/selective-php/samesite-cookie/workflows/build/badge.svg)](https://github.com/selective-php/samesite-cookie/actions)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/selective-php/samesite-cookie.svg)](https://scrutinizer-ci.com/g/selective-php/samesite-cookie/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/quality/g/selective-php/samesite-cookie.svg)](https://scrutinizer-ci.com/g/selective-php/samesite-cookie/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/selective/samesite-cookie.svg)](https://packagist.org/packages/selective/samesite-cookie/stats)
