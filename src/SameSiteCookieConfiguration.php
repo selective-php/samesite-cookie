@@ -24,7 +24,7 @@ final class SameSiteCookieConfiguration
      * true = Set cookie only for HTTPS
      * false = Set cookie for HTTP and HTTPS
      *
-     * @var bool Prevents cookies from being read by scripts.
+     * @var bool prevents cookies from being read by scripts
      */
     public $httpOnly = true;
 
