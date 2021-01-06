@@ -2,9 +2,10 @@
 
 namespace Selective\SameSiteCookie\Test;
 
+use Middlewares\Utils\Dispatcher;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Relay\Relay;
+use Psr\Http\Server\MiddlewareInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
 /**
@@ -15,7 +16,7 @@ trait MiddlewareTestTrait
     /**
      * Run middleware stack.
      *
-     * @param array $queue The queue
+     * @param array<MiddlewareInterface> $queue The middleware queue
      *
      * @return ResponseInterface The response
      */
@@ -23,16 +24,11 @@ trait MiddlewareTestTrait
     {
         $queue[] = new ResponseFactoryMiddleware();
 
-        $request = $this->createRequest();
-        $relay = new Relay($queue);
-
-        return $relay->handle($request);
+        return Dispatcher::run($queue);
     }
 
     /**
      * Factory.
-     *
-     * @return ServerRequestInterface
      */
     protected function createRequest(): ServerRequestInterface
     {

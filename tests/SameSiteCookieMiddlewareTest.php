@@ -16,8 +16,6 @@ class SameSiteCookieMiddlewareTest extends TestCase
 
     /**
      * Test.
-     *
-     * @return void
      */
     public function testDefaultConfiguration(): void
     {
@@ -31,7 +29,7 @@ class SameSiteCookieMiddlewareTest extends TestCase
         ]);
 
         $cookie = $response->getHeaderLine('Set-Cookie');
-        static::assertSame('PHPSESSID=v3absd19o9pi6cjvhb5pkmsfo9; path=/; Secure; HttpOnly; SameSite=Lax;', $cookie);
-        static::assertSame('', (string)$response->getBody());
+        $this->assertSame('PHPSESSID=v3absd19o9pi6cjvhb5pkmsfo9; path=/; Secure; HttpOnly; SameSite=Lax;', $cookie);
+        $this->assertSame('', (string)$response->getBody());
     }
 }
