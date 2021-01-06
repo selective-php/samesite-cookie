@@ -32,4 +32,24 @@ final class SameSiteCookieConfiguration
      * @var bool Provide cookies only via ssl. Should be enabled in production.
      */
     public $secure = true;
+
+    /**
+     * The constructor.
+     *
+     * @param array<mixed> $settings The settings
+     */
+    public function __construct(array $settings = [])
+    {
+        if (isset($settings['start_session'])) {
+            $this->startSession = (bool)$settings['start_session'];
+        }
+
+        if (isset($settings['same_site'])) {
+            $this->sameSite = (string)$settings['same_site'];
+        }
+
+        if (isset($settings['http_only'])) {
+            $this->httpOnly = (bool)$settings['http_only'];
+        }
+    }
 }
