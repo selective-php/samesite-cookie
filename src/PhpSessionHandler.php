@@ -46,4 +46,12 @@ final class PhpSessionHandler implements SessionHandlerInterface
     {
         return session_status() === PHP_SESSION_ACTIVE;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function save(): void
+    {
+        session_write_close();
+    }
 }

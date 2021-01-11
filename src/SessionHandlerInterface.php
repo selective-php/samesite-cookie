@@ -41,4 +41,11 @@ interface SessionHandlerInterface
      * @return bool The session status
      */
     public function isStarted(): bool;
+
+    /**
+     * Save session.
+     *
+     * @return void
+     */
+    public function save(): void;
 }
