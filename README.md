@@ -42,6 +42,26 @@ Further details can be found here:
 
 ## Slim 4 integration
 
+```php
+<?php
+
+use Selective\SameSiteCookie\SameSiteCookieMiddleware;
+use Slim\Factory\AppFactory;
+
+$app = AppFactory::create();
+
+// ...
+
+// Register the samesite cookie middleware
+$app->add(new SameSiteCookieMiddleware());
+
+// ...
+
+$app->run();
+```
+
+**Example with configuration and the session starter middleware.**
+
 Slim 4 uses a LIFO (last in, first out) middleware stack,
 so we have to add the middleware in reverse order:
 
@@ -57,6 +77,7 @@ $app = AppFactory::create();
 
 // ...
 
+// Optional: Add custom configuration
 $configuration = new SameSiteCookieConfiguration();
 
 // Register the samesite cookie middleware

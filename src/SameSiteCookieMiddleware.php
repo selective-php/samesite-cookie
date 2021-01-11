@@ -26,14 +26,14 @@ final class SameSiteCookieMiddleware implements MiddlewareInterface
     /**
      * The constructor.
      *
-     * @param SameSiteCookieConfiguration $configuration The configuration
+     * @param SameSiteCookieConfiguration|null $configuration The configuration
      * @param SessionHandlerInterface|null $sessionHandler The session handler
      */
     public function __construct(
-        SameSiteCookieConfiguration $configuration,
+        SameSiteCookieConfiguration $configuration = null,
         SessionHandlerInterface $sessionHandler = null
     ) {
-        $this->configuration = $configuration;
+        $this->configuration = $configuration ?: new SameSiteCookieConfiguration();
         $this->sessionHandler = $sessionHandler ?: new PhpSessionHandler();
     }
 
