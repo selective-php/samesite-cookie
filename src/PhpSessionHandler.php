@@ -3,7 +3,7 @@
 namespace Selective\SameSiteCookie;
 
 /**
- * SameSite Cookie Configuration.
+ * PHP Session handler.
  */
 final class PhpSessionHandler implements SessionHandlerInterface
 {
