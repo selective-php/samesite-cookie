@@ -44,6 +44,6 @@ final class PhpSessionHandler implements SessionHandlerInterface
      */
     public function isStarted(): bool
     {
-        return session_status() !== PHP_SESSION_ACTIVE;
+        return session_status() === PHP_SESSION_ACTIVE;
     }
 }
