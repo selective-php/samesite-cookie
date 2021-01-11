@@ -62,8 +62,9 @@ $configuration = new SameSiteCookieConfiguration();
 // Register the samesite cookie middleware
 $app->add(new SameSiteCookieMiddleware($configuration));
 
-// Start the native PHP session handler and fetch the session attributes
-$app->add(new SameSiteSessionMiddleware($configuration));
+// Optional: Start the PHP session
+// Use this middleware only if you have no other session starter middleware
+$app->add(new SameSiteSessionMiddleware());
 
 // ...
 

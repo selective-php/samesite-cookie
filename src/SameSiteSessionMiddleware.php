@@ -13,11 +13,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 final class SameSiteSessionMiddleware implements MiddlewareInterface
 {
     /**
-     * @var SameSiteCookieConfiguration
-     */
-    private $configuration;
-
-    /**
      * @var SessionHandlerInterface
      */
     private $sessionHandler;
@@ -25,14 +20,10 @@ final class SameSiteSessionMiddleware implements MiddlewareInterface
     /**
      * The constructor.
      *
-     * @param SameSiteCookieConfiguration $configuration The configuration
      * @param SessionHandlerInterface|null $sessionHandler The session handler
      */
-    public function __construct(
-        SameSiteCookieConfiguration $configuration,
-        SessionHandlerInterface $sessionHandler = null
-    ) {
-        $this->configuration = $configuration;
+    public function __construct(SessionHandlerInterface $sessionHandler = null)
+    {
         $this->sessionHandler = $sessionHandler ?: new PhpSessionHandler();
     }
 
@@ -46,11 +37,13 @@ final class SameSiteSessionMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        // Start session
-        if ($this->configuration->startSession === true && !$this->sessionHandler->isStarted()) {
+        if (!$this->sessionHandler->isStarted()) {
             $this->sessionHandler->start();
         }
 
-        return $handler->handle($request);
+        $response = $handler->handle($request);
+        $this->sessionHandler->save();
+
+        return $response;
     }
 }

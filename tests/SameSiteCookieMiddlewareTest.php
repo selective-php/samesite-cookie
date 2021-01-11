@@ -24,7 +24,7 @@ class SameSiteCookieMiddlewareTest extends TestCase
         session_id('v3absd19o9pi6cjvhb5pkmsfo9');
 
         $response = $this->runQueue([
-            new SameSiteSessionMiddleware($configuration),
+            new SameSiteSessionMiddleware(),
             new SameSiteCookieMiddleware($configuration),
         ]);
 
