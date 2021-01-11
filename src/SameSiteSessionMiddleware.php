@@ -51,11 +51,6 @@ final class SameSiteSessionMiddleware implements MiddlewareInterface
             $this->sessionHandler->start();
         }
 
-        $request = $request
-            ->withAttribute('session_id', $this->sessionHandler->getId())
-            ->withAttribute('session_name', $this->sessionHandler->getName())
-            ->withAttribute('session_cookie_params', $this->sessionHandler->getCookieParams());
-
         return $handler->handle($request);
     }
 }
