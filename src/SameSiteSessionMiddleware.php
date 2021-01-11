@@ -8,7 +8,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 /**
- * Native PHP Session Middleware.
+ * SameSite Session Middleware.
  */
 final class SameSiteSessionMiddleware implements MiddlewareInterface
 {
