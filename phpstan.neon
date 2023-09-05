@@ -4,5 +4,4 @@ parameters:
 		- src
 		- tests
 	ignoreErrors:
-		- '#Cannot cast mixed to string.#'
 		- '#Parameter \#2 ...\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given.#'

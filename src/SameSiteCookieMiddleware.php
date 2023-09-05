@@ -6,7 +6,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use RuntimeException;
 
 /**
  * SameSite Cookie Middleware.
@@ -43,7 +42,7 @@ final class SameSiteCookieMiddleware implements MiddlewareInterface
      * @param ServerRequestInterface $request The request
      * @param RequestHandlerInterface $handler The handler
      *
-     * @throws RuntimeException
+     * @throws \RuntimeException
      *
      * @return ResponseInterface The response
      */
@@ -56,7 +55,7 @@ final class SameSiteCookieMiddleware implements MiddlewareInterface
         $params = $this->sessionHandler->getCookieParams();
 
         if (!$sessionId || !$sessionName || !$params) {
-            throw new RuntimeException('The session must be started before samesite cookie can be generated.');
+            throw new \RuntimeException('The session must be started before samesite cookie can be generated.');
         }
 
         $cookieValues = [
