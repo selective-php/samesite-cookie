@@ -12,7 +12,7 @@ A PSR-15 middleware to secure your site with SameSite cookies :cookie:
 
 ## Requirements
 
-* PHP 7.2+ or 8.0+
+* PHP 8.1+
 
 ## Installation
 
