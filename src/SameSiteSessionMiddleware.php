@@ -22,8 +22,9 @@ final class SameSiteSessionMiddleware implements MiddlewareInterface
      *
      * @param SessionHandlerInterface|null $sessionHandler The session handler
      */
-    public function __construct(SessionHandlerInterface $sessionHandler = null)
-    {
+    public function __construct(
+        ?SessionHandlerInterface $sessionHandler = null
+    ) {
         $this->sessionHandler = $sessionHandler ?: new PhpSessionHandler();
     }
 
