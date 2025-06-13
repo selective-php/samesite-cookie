@@ -26,7 +26,7 @@ interface SessionHandlerInterface
      *
      * @return string|null The name
      */
-    public function getName(): ?string;
+    public function getName(): string|null;
 
     /**
      * Get cookie params.

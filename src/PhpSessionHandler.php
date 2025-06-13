@@ -26,9 +26,14 @@ final class PhpSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritDoc}
      */
-    public function getName(): ?string
+    public function getName(): string|null
     {
-        return (string)session_name();
+        $sessionName = session_name();
+        if ($sessionName === false) {
+            $sessionName = null;
+        }
+
+        return $sessionName;
     }
 
     /**
