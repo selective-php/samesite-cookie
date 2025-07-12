@@ -28,7 +28,7 @@ final class PhpSessionHandler implements SessionHandlerInterface
      */
     public function getName(): ?string
     {
-        return (string)session_name();
+        return session_name() ?: null;
     }
 
     /**
